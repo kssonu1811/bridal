@@ -1,0 +1,267 @@
+{% extends 'base.html' %}
+
+{% block title %} | Home  {% endblock%}
+
+{% block content %}
+{% load humanize %}
+
+{% load static %}
+
+<!-- Banner start -->
+<div class="banner" id="banner">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner banner-slider-inner text-center">
+            <div class="carousel-item banner-max-height active item-bg">
+                <img class="d-block w-100 h-100" src="{% static 'img/chiggy.jpg' %}" alt="banner">
+                <div class="carousel-content container banner-info-2 bi-2 text-left">
+                    <h3>Wow Factor Standard</h3>
+                    <h5>Allow us to guide you through the innovative scheme<br>
+                        free approach in making your dream bridal function.</h5>
+                    <a href="{% url 'services' %}" class="btn btn-lg btn-theme">Read more</a>
+                </div>
+            </div>
+            <div class="carousel-item banner-max-height item-bg">
+                <img class="d-block w-100 h-100" src="{% static 'img/chiggy-2.jpg' %}" alt="banner">
+                <div class="carousel-content container banner-info-2 bi-2 text-left">
+                    <h3>Explore Your Dream <br> Bridal Function</h3>
+                    <h5>Allow us to guide you through the innovative scheme<br>
+                        free approach in making your dream bridal function.</h5>
+                    <a href="#" class="btn btn-lg btn-theme">Read more</a>
+                </div>
+            </div>
+            <div class="carousel-item banner-max-height item-bg">
+                <img class="d-block w-100 h-100" src="{% static 'img/chiggy-1.jpg' %}" alt="banner">
+                <div class="carousel-content container banner-info-2 bi-2 text-left">
+                    <h3>We Are Wheel</h3>
+                    <h5>Allow us to guide you through the innovative scheme<br>
+                        free approach in making your dream bridal function.</h5>
+                    <a href="#" class="btn btn-lg btn-theme">Read more</a>
+                </div>
+            </div>
+        </div>
+        <!-- Search box 3 start -->
+        <div class="search-box-4 sb-8">
+            <form action="{% url 'search' %}" method="">
+                <div class="form-group">
+                    <input type="text" name="keyword" placeholder="Search by name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <select class="form-control search-fields" name="model">
+                        <option selected="true" disabled="disabled">Type</option>
+                        {% for type in type_search %}
+                          <option value="{{type}}">{{type}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control search-fields" name="city">
+                        <option selected="true" disabled="disabled">Sub Title</option>
+                        {% for sub in sub_title_search %}
+                          <option value="{{sub}}">{{sub}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control search-fields" name="year">
+                        <option selected="true" disabled="disabled">Design</option>
+                        {% for design in design_search %}
+                          <option value="{{design}}">{{design}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control search-fields" name="body_style">
+                        <option selected="true" disabled="disabled">Select Purpose</option>
+                        {% for purpose in purpose_search %}
+                          <option value="{{purpose}}">{{purpose}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="range-slider clearfix">
+                                <label>Price</label>
+                                <div data-min="0" data-max="150000"  data-min-name="min_price" data-max-name="max_price" data-unit="Rs" class="range-slider-ui ui-slider" aria-disabled="false"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                <div class="form-group">
+                    <button class="btn btn-block button-theme btn-md">
+                        <i class="fa fa-search"></i> Search
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!-- Search box 3 end -->
+        <a class="carousel-control-prev none-580" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="slider-mover-left" aria-hidden="true">
+                <i class="fa fa-angle-left"></i>
+            </span>
+        </a>
+        <a class="carousel-control-next none-580" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="slider-mover-right" aria-hidden="true">
+                <i class="fa fa-angle-right"></i>
+            </span>
+        </a>
+    </div>
+</div>
+<!-- Banner end -->
+
+<!-- Search box 2 end -->
+
+<!-- feature bridal start -->
+<div class="featured-car content-area">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h1>Feature <span>Bridal Plane</span></h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="row">
+         {% for bridal in feature_bridal %} 
+            <div class="col-lg-4 col-md-6">
+                
+                <div class="car-box">
+                    <div class="car-thumbnail">
+                        <a href="{% url 'bridal:bridal_detail' bridal.id %}" class="car-img">
+                            <div class="tag">Bridal Features</div>
+                            <img class="d-block w-100" src="{{bridal.photo.url}}" alt="car" style="min-height: 260px; max-height: 260px;">
+                            <div class="facilities-list clearfix">
+                                <ul>
+                                    <li>
+                                        <span><i class="flaticon-way"></i></span>Service provider
+                                    </li>
+                                    
+                                    <li>
+                                        <span><i class="flaticon-manual-transmission"></i></span>{{bridal.aouther_name}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </a>
+                        <div class="carbox-overlap-wrapper">
+                            <div class="overlap-box">
+                                <div class="overlap-btns-area">
+                                    <div class="car-magnify-gallery">
+                                        <a href="{{ bridal.photo1.url }}" class="overlap-btn">
+                                            <i class="fa fa-expand"></i>
+                                            <img class="hidden" src="{{ bridal.photo1.url }}">
+                                        </a>
+                                        <a href="{{ bridal.photo2.url }}" class="hidden">
+                                            <img class="hidden" src="{{ bridal.photo2.url }}">
+                                        </a>
+                                        <a href="{{ bridal.photo3.url }}" class="hidden">
+                                            <img class="hidden" src="{{ bridal.photo3.url }}">
+                                        </a>
+                                        <a href="{{ bridal.photo4.url }}" class="hidden">
+                                            <img class="hidden" src="{{ bridal.photo4.url }}">
+                                        </a>
+                                        <a href="{{ bridal.photo5.url }}" class="hidden">
+                                            <img class="hidden" src="{{ bridal.photo5.url }}">
+                                        </a>
+                                        <a href="{{ bridal.photo6.url }}" class="overlap-btn">
+                                            <i class="fa fa-expand"></i>
+                                            <img class="hidden" src="{{ bridal.photo6.url }}">
+                                        </a>
+                                        <a href="{{ bridal.photo7.url }}" class="hidden">
+                                            <img class="hidden" src="{{ bridal.photo7.url }}">
+                                        </a>
+                                        <a href="{{ bridal.photo8.url }}" class="hidden">
+                                            <img class="hidden" src="{{ bridal.photo8.url }}">
+                                        </a>
+                                        <a href="{{ bridal.photo9.url }}" class="hidden">
+                                            <img class="hidden" src="{{ bridal.photo9.url }}">
+                                        </a>
+                                        <a href="{{ bridal.photo10.url }}" class="hidden">
+                                            <img class="hidden" src="{{ bridal.photo10.url }}">
+                                        </a>
+                                        <a href="{{ bridal.photo11.url }}" class="hidden">
+                                            <img class="hidden" src="{{ bridal.photo11.url }}">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <h1 class="title">
+                            <a href="{% url 'bridal:bridal_detail' bridal.id %}">{{ bridal.sub_title }}</a>
+                        </h1>
+                        <div class="location">
+                            <a href="{% url 'bridal:bridal_detail' bridal.id %}">
+                                <i class="flaticon-pin"></i>{{bridal.service_place}}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer clearfix">
+                        <div class="pull-left ratings days">
+                            <p class="cartype">{{ bridal.type}}</p>
+                        </div>
+                        <div class="pull-right">
+                            <p class="price">{{ bridal.cost| intcomma}}</p>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Featured bridal end -->
+
+<!-- Our team start -->
+<div class="our-team content-area bg-grea-3">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h1>Executive <span>Team</span></h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+        </div>
+        <!-- Slick slider area start -->
+        <div class="slick-slider-area clearfix">
+            <div class="row slick-carousel" data-slick='{"slidesToShow": 4, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                {% for team in teams %}
+                <div class="slick-slide-item">
+                    <div class="team-1">
+                        <div class="photo">
+                            <a href="#">
+                                <img src="{{ team.photo.url }}" alt="team-1" class="img-fluid" style="min-height: 260px; max-height: 260px;">
+                            </a>
+                            <div class="social-list clearfix">
+                                <a href="{{ team.facebook_link }}" target="_blank" class="facebook-bg"><i class="fa fa-facebook"></i></a>
+                                <a href="{{ team.twitter_linl }}" target="_blank" class="twitter-bg"><i class="fa fa-twitter"></i></a>
+                                <a href="{{ team.google_plus_link }}" target="_blank" class="google-bg"><i class="fa fa-google"></i></a>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <h4><a href="team-detail.html">{{team.first_name}} {{team.last_name}}</a></h4>
+                            <h5>{{team.desination}}</h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Our team end -->
+
+<!-- Intro section start -->
+<div class="intro-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-sm-12">
+                <div class="intro-text">
+                    <h3>Do You Have Questions ?</h3>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <a href="#" class="btn btn-md">Get in Touch</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Intro section end -->
+
+
+
+
+
+{% endblock %}

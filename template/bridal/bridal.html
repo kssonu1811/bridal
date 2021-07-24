@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% block title %} | Our Bridal Inventory   {% endblock%}
+{% load humanize %}
+{% block content %}
+{% load static %}
+<!-- Sub banner start -->
+<div class="sub-banner overview-bgi">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>Our bridal Inventory</h1>
+            <ul class="breadcrumbs">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="active">Bridal</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub Banner end -->
+
+<!-- Featured Bridal start -->
+<div class="featured-car content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+               
+                <div class="row">
+                    {% for bridal in feature_bridal %}
+                      <div class="col-lg-6 col-md-6">
+                          <div class="car-box-3">
+                              <div class="car-thumbnail">
+                                  <a href="car-details.html" class="car-img">
+                                      <div class="tag">Features</div>
+                                      <div class="price-box">
+                                          <span>${{ car.price | intcomma }}</span>
+                                      </div>
+                                      <img class="d-block w-100" src="{{ bridal.photo.url }}" alt="car" style="min-height: 250px; max-height: 250px;">
+                                  </a>
+                                  <div class="carbox-overlap-wrapper">
+                                      <div class="overlap-box">
+                                          <div class="overlap-btns-area">
+                                              <div class="car-magnify-gallery">
+                                                  <a href="{{ bridal.photo.url }}" class="overlap-btn">
+                                                      <i class="fa fa-expand"></i>
+                                                      <img class="hidden" src="{{ bridal.photo.url }}">
+                                                  </a>
+                                                  <a href="{{ bridal.photo1.url }}" class="hidden" >
+                                                      <img class="hidden" src="{{ bridal.photo1.url }}">
+                                                  </a>
+                                                  <a href="{{ bridal.photo2.url }}" class="hidden">
+                                                      <img class="hidden" src="{{ bridal.photo2.url }}">
+                                                  </a>
+                                                  <a href="{{ bridal.photo3.url }}" class="hidden">
+                                                      <img class="hidden" src="{{ bridal.photo3.url }}">
+                                                  </a>
+                                                  <a href="{{ bridal.photo4.url }}" class="hidden" >
+                                                      <img class="hidden" src="{{ bridal.photo4.url }}">
+                                                  </a>
+                                                  <a href="{{ bridal.photo5.url }}" class="hidden" >
+                                                    <img class="hidden" src="{{ bridal.photo5.url }}">
+                                                </a>
+                                                <a href="{{ bridal.photo6.url }}" class="hidden">
+                                                    <img class="hidden" src="{{ bridal.photo6.url }}">
+                                                </a>
+                                                <a href="{{ bridal.photo7.url }}" class="hidden">
+                                                    <img class="hidden" src="{{ bridal.photo7.url }}">
+                                                </a>
+                                                <a href="{{ bridal.photo8.url }}" class="hidden" >
+                                                    <img class="hidden" src="{{ bridal.photo8.url }}">
+                                                </a>
+                                                <a href="{{ bridal.photo9.url }}" class="hidden">
+                                                    <img class="hidden" src="{{ bridal.photo9.url }}">
+                                                </a>
+                                                <a href="{{ bridal.photo10.url }}" class="hidden">
+                                                    <img class="hidden" src="{{ bridal.photo10.url }}">
+                                                </a>
+                                                <a href="{{ bridal.photo11.url }}" class="hidden" >
+                                                    <img class="hidden" src="{{ bridal.photo11.url }}">
+                                                </a>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="detail">
+                                  <h1 class="title">
+                                      <a href="{% url 'bridal:bridal_detail' bridal.id %}">{{ bridal.sub_title }}</a>
+                                  </h1>
+                                  <div class="location">
+                                      <a href="{% url 'bridal:bridal_detail' bridal.id %}">
+                                          <i class="flaticon-pin"></i>{{ bridal.service_place }}
+                                      </a>
+                                  </div>
+                                  <ul class="facilities-list clearfix">
+                                      <li>{{ bridal.aouther_name }}</li>
+                                      <li>{{ bridal.purpose }}</li>
+                                      <li>{{ bridal.design }}</li>
+                                      <li>{{ bridal.type }}</li>
+                                    
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+              
+                  <div class="pagination-box p-box-2 text-center">
+                    <nav aria-label="Page navigation example">
+                        {% if feature_bridal.has_other_pages %}
+                        <ul class="pagination">
+                            {% if feature_bridal.has_previous %}
+                                <li class="page-item ">
+                                    <a class="page-link" href="?page={{feature_bridal.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" ><i class="fa fa-angle-left"></i></a>
+                                </li>
+                            {% endif %}
+                            {% for i in feature_bridal.paginator.page_range %}
+                              {% if feature_bridal.number == i %}
+                                 <li class="page-item"><a class="page-link active" href="#">{{i}}</a></li>
+                              {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                              {% endif %}
+                            {% endfor %} 
+  
+                            {% if feature_bridal.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{feature_bridal.next_page_number}}"><i class="fa fa-angle-right"></i></a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" ><i class="fa fa-angle-right"></i></a>
+                                </li>
+                            {% endif %}
+  
+                          </ul>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="sidebar-right">
+                    <!-- Advanced search start -->
+                    <div class="widget advanced-search2">
+                        <h3 class="sidebar-title">Search your desire car</h3>
+                        <form method="GET">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="brand">
+                                    <option>Brand</option>
+                                    <option>Any</option>
+                                    <option>New</option>
+                                    <option>Semi-New</option>
+                                    <option>Damaged</option>
+                                    <option>Used</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="location">
+                                    <option>Location</option>
+                                    <option>United States</option>
+                                    <option>United Kingdom</option>
+                                    <option>American Samoa</option>
+                                    <option>Belgium</option>
+                                    <option>Cameroon</option>
+                                    <option>Canada</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="year">
+                                    <option>Year</option>
+                                    <option>2016</option>
+                                    <option>2017</option>
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                    <option>2020</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="category">
+                                    <option>Category</option>
+                                    <option>Luxury Car</option>
+                                    <option>Pickup Truck</option>
+                                    <option>Minivan</option>
+                                    <option>Truck</option>
+                                    <option>Sports Car</option>
+                                    <option>Wagon</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="transmission">
+                                    <option>Transmission</option>
+                                    <option>Automatic</option>
+                                    <option>Manual</option>
+                                    <option>Tiptronic</option>
+                                </select>
+                            </div>
+                            <div class="range-slider clearfix">
+                                <label>Price</label>
+                                <div data-min="0" data-max="150000"  data-min-name="min_price" data-max-name="max_price" data-unit="USD" class="range-slider-ui ui-slider" aria-disabled="false"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group mb-0">
+                                <button class="search-button btn">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                   
+                    <!-- Question start -->
+                    <div class="widget question widget-3">
+                        <h5 class="sidebar-title">Follow us</h5>
+                        <div class="social-list clearfix">
+                            <ul>
+                                <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
+                                <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Featured bridal end -->
+
+
+
+
+{% endblock %}
